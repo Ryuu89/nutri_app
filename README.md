@@ -72,11 +72,16 @@ login com GitHub, uma vez só:
 1. No GitHub: **Settings › Developer settings › OAuth Apps › New OAuth App**.
    - Application name: `NutriApp`
    - Homepage URL e Authorization callback URL: `https://abentofilho.github.io/nutri_app/`
-2. Clique em **Register application**, depois em **Generate a new client secret**.
-3. No Render, em **Environment**, crie `GITHUB_CLIENT_ID` e `GITHUB_CLIENT_SECRET`
-   com os dois valores.
-4. No app: **Administrador? Entrar com GitHub** (tela de entrada) ou
-   **Perfil › Vincular GitHub**. A Curadoria aparece no Perfil.
+   - Marque **Enable Device Flow**.
+2. Clique em **Register application** e copie o **Client ID** (não é segredo).
+3. No Render, em **Environment**, crie `GITHUB_CLIENT_ID` com esse valor.
+
+Para entrar: **Administrador? Entrar com GitHub** (tela de entrada) ou
+**Perfil › Vincular GitHub**. O app mostra um código; toque no botão, cole o
+código no GitHub e autorize. Ao voltar para o app, a Curadoria aparece no Perfil.
+
+Quem preferir entrar por redirecionamento, sem digitar código, gera um
+**client secret** no OAuth App e cria também `GITHUB_CLIENT_SECRET` no Render.
 
 ## Rodando na sua máquina
 
@@ -108,7 +113,8 @@ pytest
 | Variável | Para quê |
 |---|---|
 | `DATABASE_URL` | O Postgres (já configurado). |
-| `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` | Login com GitHub, usado pelo administrador. |
+| `GITHUB_CLIENT_ID` | Login com GitHub, usado pelo administrador. |
+| `GITHUB_CLIENT_SECRET` | Opcional. Troca o login por código pelo redirecionamento. |
 | `ADMIN_GITHUB` | Contas do GitHub administradoras. Padrão: `abentofilho`. |
 | `ADMIN_EMAILS` | Opcional. E-mails administradores; só valem se confirmados pelo Google ou GitHub. |
 | `GOOGLE_CLIENT_ID` | Opcional. Botão "Continuar com o Google". |

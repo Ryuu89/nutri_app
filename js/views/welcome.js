@@ -1,7 +1,7 @@
 import { LOGO, icon } from '../icons.js';
 import * as store from '../store.js';
 import { busy, passwordField } from '../ui.js';
-import { startGitHubLogin } from '../github.js';
+import { signInWithGitHub } from '../github.js';
 import { openPrivacy } from '../privacy.js';
 import { $, esc, loadScript } from '../util.js';
 
@@ -135,7 +135,7 @@ export function showWelcome(root, { onDone, onCancel, code = '', resetToken = ''
       mode = m.dataset.mode;
       paint();
     }
-    if (e.target.closest('[data-act=github]')) startGitHubLogin(config.github_client_id);
+    if (e.target.closest('[data-act=github]')) signInWithGitHub(onDone);
     if (e.target.closest('[data-act=privacy]')) openPrivacy();
     if (e.target.closest('[data-act=cancel-reset]')) {
       if (onCancel) onCancel();
