@@ -24,7 +24,8 @@ Variáveis de ambiente (todas opcionais):
     ADMIN_GITHUB          usuários do GitHub administradores (padrão: abentofilho)
     ADMIN_EMAILS          e-mails administradores; só valem se confirmados pelo
                           Google ou pelo GitHub
-    GOOGLE_CLIENT_ID      habilita o botão "Continuar com o Google"
+    GOOGLE_CLIENT_ID      troca o cliente OAuth do botão "Continuar com o
+                          Google" (o padrão já vem no código); vazia, desliga
     CORS_ORIGINS          sites que podem chamar a API (padrão: o GitHub Pages
                           do app e localhost)
     HISTORY_DAYS          dias guardados no diário (padrão 30)
@@ -115,10 +116,12 @@ def _env_set(name: str, default: str = "") -> set:
 
 ADMIN_EMAILS = _env_set("ADMIN_EMAILS")
 ADMIN_GITHUB = _env_set("ADMIN_GITHUB", "abentofilho")
-GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "").strip()
-# OAuth App do NutriApp no GitHub. O Client ID é público (aparece para qualquer
-# pessoa que entra), por isso fica no código: o login com GitHub, que é por
-# onde o administrador entra, funciona sem configurar nada no servidor.
+# Apps de login do NutriApp no Google e no GitHub. Os IDs são públicos (aparecem
+# para qualquer pessoa que entra), por isso ficam no código: os dois logins
+# funcionam sem configurar nada no servidor. É pelo GitHub que o administrador
+# entra.
+GOOGLE_CLIENT_ID = os.environ.get(
+    "GOOGLE_CLIENT_ID", "164107022232-6imfi8h3nvp4lio58h1nucf04h1uf8vf.apps.googleusercontent.com").strip()
 GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID", "Ov23liFIgjI0cLIQxOjX").strip()
 GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET", "").strip()
 GITHUB_SCOPE = "read:user user:email"

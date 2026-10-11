@@ -57,6 +57,7 @@ js/
   pwa.js, sw.js       instalação no celular
   github.js           login do administrador pelo GitHub
   privacy.js          aviso de privacidade
+privacidade.html      política de privacidade (página pública)
 assets/food/          ícones de alimentos (Fluent Emoji, licença MIT)
 backend/main.py       API (FastAPI + SQLAlchemy)
 backend/tests/        testes (rodam no GitHub a cada push)
@@ -118,15 +119,18 @@ pytest
 | `GITHUB_CLIENT_SECRET` | Opcional. Troca o login por código pelo redirecionamento. |
 | `ADMIN_GITHUB` | Contas do GitHub administradoras. Padrão: `abentofilho`. |
 | `ADMIN_EMAILS` | Opcional. E-mails administradores; só valem se confirmados pelo Google ou GitHub. |
-| `GOOGLE_CLIENT_ID` | Opcional. Botão "Continuar com o Google". |
+| `GOOGLE_CLIENT_ID` | Opcional. Troca o cliente OAuth do login com Google (o padrão vem no código). |
 | `BREVO_API_KEY` (ou `RESEND_API_KEY`), `MAIL_FROM` | Opcional. Liga os e-mails de confirmação e de nova senha. |
 | `CORS_ORIGINS` | Sites que podem usar a API. Padrão: o GitHub Pages do app e `localhost`. |
 | `HISTORY_DAYS` | Dias guardados no diário. Padrão: 30. |
 
-### Login com Google (opcional)
+### Login com Google
 
-1. Em https://console.cloud.google.com: **APIs e serviços › Credenciais ›
-   Criar credenciais › ID do cliente OAuth** (aplicativo da Web).
+Já vem ligado: o ID do cliente OAuth (público) está no código. Para usar um
+cliente próprio:
+
+1. Em https://console.cloud.google.com: **Google Auth Platform › Clientes ›
+   Criar cliente** (aplicativo da Web).
 2. Em **Origens JavaScript autorizadas**, adicione `https://abentofilho.github.io`.
 3. Copie o ID do cliente para `GOOGLE_CLIENT_ID` no Render.
 

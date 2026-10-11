@@ -906,6 +906,7 @@ body.sheet-open .toasts { bottom: calc(var(--safe-b) + 90px); }
 .prose h3 { font-family: var(--serif); font-size: 17px; margin: 18px 0 4px; }
 .prose h3:first-child { margin-top: 4px; }
 .prose p { margin: 0 0 8px; color: var(--ink-2); }
+.prose a { color: var(--sage-d); text-underline-offset: 3px; }
 .credits .link-btn { font-size: 13px; padding: 0; }
 
 /* ---------- senha e telas de e-mail ---------- */
