@@ -140,10 +140,12 @@ def now_ms() -> int:
 # ---------- database setup ----------
 
 def _normalize_db_url(url: str) -> str:
-    # Alguns provedores (Neon, Supabase, Heroku antigo) entregam a URL como
-    # "postgres://..." - o SQLAlchemy moderno exige "postgresql://...".
-    if url.startswith("postgres://"):
-        url = url.replace("postgres://", "postgresql://", 1)
+    # Os provedores entregam a URL como "postgres://..." ou "postgresql://...".
+    # O driver fica explícito: sem ele, o SQLAlchemy 2.1 procura o psycopg 3,
+    # que não está no requirements.txt, e o servidor não sobe.
+    scheme, _, rest = url.partition("://")
+    if scheme in ("postgres", "postgresql"):
+        return "postgresql+psycopg2://" + rest
     return url
 
 

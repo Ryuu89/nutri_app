@@ -335,6 +335,14 @@ def test_github_redirect_must_be_an_allowed_origin(client):
     assert res.status_code == 400
 
 
+def test_database_url_names_the_installed_driver():
+    # Sem o driver na URL, o SQLAlchemy 2.1 procura o psycopg 3 e o servidor não sobe no Render.
+    import main
+    for url in ("postgres://u:p@host/db?sslmode=require", "postgresql://u:p@host/db?sslmode=require"):
+        assert main._normalize_db_url(url) == "postgresql+psycopg2://u:p@host/db?sslmode=require"
+    assert main._normalize_db_url("sqlite:///nutri.db") == "sqlite:///nutri.db"
+
+
 def test_github_login_by_code(client, monkeypatch):
     import main
     # Só com o ID (sem o segredo), o servidor oferece o login por código.
