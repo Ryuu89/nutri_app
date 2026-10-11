@@ -14,7 +14,7 @@ os.environ["ADMIN_EMAILS"] = "antonio@exemplo.com"
 os.environ["ADMIN_GITHUB"] = "abentofilho"
 os.environ["GITHUB_CLIENT_ID"] = "github-teste"
 os.environ["GITHUB_CLIENT_SECRET"] = "segredo-teste"
-os.environ.pop("GOOGLE_CLIENT_ID", None)
+os.environ["GOOGLE_CLIENT_ID"] = ""
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

@@ -76,7 +76,7 @@ login com GitHub, uma vez só:
 2. Clique em **Register application** e copie o **Client ID** (não é segredo).
 3. No Render, em **Environment**, crie `GITHUB_CLIENT_ID` com esse valor.
 
-Para entrar: **Administrador? Entrar com GitHub** (tela de entrada) ou
+Para entrar: **Continuar com o GitHub** (tela de entrada) ou
 **Perfil › Vincular GitHub**. O app mostra um código; toque no botão, cole o
 código no GitHub e autorize. Ao voltar para o app, a Curadoria aparece no Perfil.
 

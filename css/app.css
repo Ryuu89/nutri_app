@@ -791,7 +791,18 @@ body.sheet-open .toasts { bottom: calc(var(--safe-b) + 90px); }
 .link-btn.subtle { color: var(--ink-3); font-weight: 500; font-size: 13px; }
 .form-error { color: var(--danger); font-size: 14px; margin: 10px 0 0; }
 .form-error:empty { display: none; }
+.social { display: grid; gap: 10px; }
+.social .divider { margin: 6px 0 16px; }
 .gsi-slot { display: flex; justify-content: center; min-height: 44px; }
+/* mesmo desenho do botão do Google, que fica branco também no tema escuro */
+.social-btn {
+  position: relative; width: 100%; max-width: 360px; height: 40px; margin: 0 auto; padding: 0 44px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid #dadce0; border-radius: 999px; background: #fff; color: #3c4043;
+  font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
+}
+.social-btn:hover { background: #f8fafe; border-color: #d2e3fc; }
+.social-btn svg { position: absolute; left: 12px; width: 19px; height: 19px; color: #1f2328; }
 
 /* ---------- carregando ---------- */
 
