@@ -66,22 +66,23 @@ Não tem etapa de build: HTML, CSS e JavaScript publicados direto pelo GitHub Pa
 
 ## Administrador
 
-O administrador é quem entra com a conta do GitHub **abentofilho**. Para ligar o
-login com GitHub, uma vez só:
+O administrador é quem entra com a conta do GitHub **abentofilho**. Não precisa
+configurar nada no servidor:
 
-1. No GitHub: **Settings › Developer settings › OAuth Apps › New OAuth App**.
-   - Application name: `NutriApp`
-   - Homepage URL e Authorization callback URL: `https://abentofilho.github.io/nutri_app/`
-   - Marque **Enable Device Flow**.
-2. Clique em **Register application** e copie o **Client ID** (não é segredo).
-3. No Render, em **Environment**, crie `GITHUB_CLIENT_ID` com esse valor.
+1. Na tela de entrada, toque em **Continuar com o GitHub** (quem já tem conta no
+   app usa **Perfil › Vincular GitHub**).
+2. O app mostra um código. Toque no botão: ele copia o código e abre o GitHub.
+   Cole o código e autorize.
+3. Volte para o app. A Curadoria aparece no Perfil.
 
-Para entrar: **Continuar com o GitHub** (tela de entrada) ou
-**Perfil › Vincular GitHub**. O app mostra um código; toque no botão, cole o
-código no GitHub e autorize. Ao voltar para o app, a Curadoria aparece no Perfil.
+Digite no GitHub só um código que o próprio app mostrou na sua tela, nunca um
+que alguém enviou.
 
-Quem preferir entrar por redirecionamento, sem digitar código, gera um
-**client secret** no OAuth App e cria também `GITHUB_CLIENT_SECRET` no Render.
+O login usa um OAuth App do GitHub cujo Client ID (público) vem no código. Para
+usar um OAuth App próprio, crie um em **Settings › Developer settings › OAuth
+Apps** com **Enable Device Flow** marcado e coloque o Client ID em
+`GITHUB_CLIENT_ID` no Render. Com `GITHUB_CLIENT_SECRET` também definido, o
+login passa a ser por redirecionamento, sem código.
 
 ## Rodando na sua máquina
 
@@ -113,7 +114,7 @@ pytest
 | Variável | Para quê |
 |---|---|
 | `DATABASE_URL` | O Postgres (já configurado). |
-| `GITHUB_CLIENT_ID` | Login com GitHub, usado pelo administrador. |
+| `GITHUB_CLIENT_ID` | Opcional. Troca o OAuth App do login com GitHub (o padrão vem no código). |
 | `GITHUB_CLIENT_SECRET` | Opcional. Troca o login por código pelo redirecionamento. |
 | `ADMIN_GITHUB` | Contas do GitHub administradoras. Padrão: `abentofilho`. |
 | `ADMIN_EMAILS` | Opcional. E-mails administradores; só valem se confirmados pelo Google ou GitHub. |

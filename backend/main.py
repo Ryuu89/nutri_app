@@ -17,10 +17,10 @@ O que guarda:
 
 Variáveis de ambiente (todas opcionais):
     DATABASE_URL          postgresql://usuario:senha@host/banco?sslmode=require
-    GITHUB_CLIENT_ID      login com GitHub (OAuth App) - é por ele que o
-                          administrador entra. Só com o ID, o login é por
-                          código digitado no github.com (device flow)
-    GITHUB_CLIENT_SECRET  opcional: troca o código pelo redirecionamento
+    GITHUB_CLIENT_ID      troca o OAuth App do login com GitHub (o padrão já
+                          vem no código); vazia, desliga esse login
+    GITHUB_CLIENT_SECRET  opcional: sem ele o login é por código digitado no
+                          github.com (device flow); com ele, por redirecionamento
     ADMIN_GITHUB          usuários do GitHub administradores (padrão: abentofilho)
     ADMIN_EMAILS          e-mails administradores; só valem se confirmados pelo
                           Google ou pelo GitHub
@@ -116,7 +116,10 @@ def _env_set(name: str, default: str = "") -> set:
 ADMIN_EMAILS = _env_set("ADMIN_EMAILS")
 ADMIN_GITHUB = _env_set("ADMIN_GITHUB", "abentofilho")
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "").strip()
-GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID", "").strip()
+# OAuth App do NutriApp no GitHub. O Client ID é público (aparece para qualquer
+# pessoa que entra), por isso fica no código: o login com GitHub, que é por
+# onde o administrador entra, funciona sem configurar nada no servidor.
+GITHUB_CLIENT_ID = os.environ.get("GITHUB_CLIENT_ID", "Ov23liFIgjI0cLIQxOjX").strip()
 GITHUB_CLIENT_SECRET = os.environ.get("GITHUB_CLIENT_SECRET", "").strip()
 GITHUB_SCOPE = "read:user user:email"
 CORS_ORIGINS = sorted(_env_set(
